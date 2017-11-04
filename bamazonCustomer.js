@@ -36,7 +36,7 @@ var mainMenu = function() {
     {
       name: 'confirm',
       type: 'confirm',
-      message: '\n\nHello! Would you like to purchase any of the above items?'
+      message: '\n\nHello! Would you like to purchase any of items above?'.green.bold
     },
   ]).then(function(answer){
       if (answer.confirm) {
@@ -65,7 +65,7 @@ function makePurchase() {
         {
             name: 'id',
             type: 'prompt',
-            message: 'Please enter the Product ID'
+            message: '\nPlease enter the ID # of the item you wish to purchase:'.cyan.bold
         }
     ])
     .then(function(answer) {
@@ -75,7 +75,7 @@ function makePurchase() {
                 {
                     name: 'units',
                     type: 'prompt',
-                    message: 'How many units would you like to purchase?'
+                    message: '\nHow many units would you like to purchase?'.magenta.bold
                 }
             ])
             .then(function (answer) {
@@ -103,7 +103,7 @@ function makePurchase() {
                             }
                         ]).then(function (answer) {
                             if (answer.confirm) {
-                                console.log('Thank you for your purchase!');
+                                console.log('\n\nThank you for your purchase!\n'.rainbow);
                                 // update stock
                                 database.removeStock(id, units, stock);
                                 // update sales
@@ -112,14 +112,14 @@ function makePurchase() {
                                     {
                                         name: 'confirm',
                                         type: 'confirm',
-                                        message: 'Return to home page?'
+                                        message: '\n\nReturn to home page?'.magenta
                                     }
                                 ])
                                 .then(function (answer) {
                                     if (answer.confirm) {
                                         mainMenu();
                                     } else {
-                                        console.log('See you next time!');
+                                        console.log('\n\nThanks for checking us out! 😎 \nHope to see you again soon!\n\n'.bold);
                                         process.exit();
                                     }
                                 });
@@ -135,7 +135,7 @@ function makePurchase() {
                             {
                                 name: 'confirm',
                                 type: 'confirm',
-                                message: 'Would you still like to purchase this product?'
+                                message: 'We do not have sufficient inventory.\n\nTo purchase this item, you will need to pick a unit number within the quantity amount we have available. \n\nWould you still like to purchase this product?'.red
                             }
                         ]).then(function (answer) {
                             if (answer.confirm) {
@@ -151,14 +151,14 @@ function makePurchase() {
                             {
                                 name: 'confirm',
                                 type: 'confirm',
-                                message: 'Would you like to make another purchase?'
+                                message: 'Would you like to make another purchase?'.magenta
                             }
                         ]).then(function (answer) {
                             if (answer.confirm) {
                                 makePurchase();
                             } else {
                                 clear();
-                                console.log('See you next time!');
+                                console.log('\n\nThanks for checking us out! 😎 \nHope to see you again soon!\n\n'.bold);
                                 process.exit();
                             }
                         });
@@ -169,14 +169,14 @@ function makePurchase() {
                         {
                             name: 'confirm',
                             type: 'confirm',
-                            message: 'Would you like to make another purchase?'
+                            message: 'Would you like to make another purchase?'.magenta
                         }
                     ]).then(function (answer) {
                         if (answer.confirm) {
                             makePurchase();
                         } else {
                             clear();
-                            console.log('See you next time!');
+                            console.log('\n\nThanks for checking us out! 😎 \nHope to see you again soon!\n\n'.bold);
                             process.exit();
                         }
                     });
