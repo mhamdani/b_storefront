@@ -36,7 +36,7 @@ var mainMenu = function() {
     {
       name: 'confirm',
       type: 'confirm',
-      message: '\n\nHello! Would you like to purchase any of items above?'.green.bold
+      message: '\n\nHello! Would you like to purchase any of items above?'.green
     },
   ]).then(function(answer){
       if (answer.confirm) {
@@ -65,7 +65,7 @@ function makePurchase() {
         {
             name: 'id',
             type: 'prompt',
-            message: '\nPlease enter the ID # of the item you wish to purchase:'.cyan.bold
+            message: '\nPlease enter the ID # of the item you wish to purchase:'.cyan
         }
     ])
     .then(function(answer) {
@@ -84,7 +84,7 @@ function makePurchase() {
                 return database.checkStock(id);
             })
             .then(function(results) {
-                clear();
+                // clear();
                 if (results) {
                     // save stock quantity and price
                     stock = results[0].stock_quantity;
@@ -93,13 +93,13 @@ function makePurchase() {
                     // if enough units are in stock...
                     if (stock >= units) {
                         var total = parseFloat(price * units).toFixed(2);
-                        console.log('Product is in stock! Total is: $' + total);
+                        console.log('\nProduct is in stock! Total is'.red.underline + ":".red + " $" + total);
                         // confirm purchase
                         inquirer.prompt([
                             {
                                 name: 'confirm',
                                 type: 'confirm',
-                                message: 'Would you like complete your purchase?'
+                                message: '\nWould you like complete your purchase?'.magenta
                             }
                         ]).then(function (answer) {
                             if (answer.confirm) {
@@ -119,7 +119,7 @@ function makePurchase() {
                                     if (answer.confirm) {
                                         mainMenu();
                                     } else {
-                                        console.log('\n\nThanks for checking us out! 😎 \nHope to see you again soon!\n\n'.bold);
+                                        console.log('\n\nThanks for checking us out! 😎 \nHope to see you again soon!\n\n'.cyan.bold);
                                         process.exit();
                                     }
                                 });
